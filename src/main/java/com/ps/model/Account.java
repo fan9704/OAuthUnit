@@ -1,23 +1,27 @@
 package com.ps.model;
 
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by samchu on 2017/2/14.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class) //加這行 CreatedBy 才會生效
 public class Account {
@@ -25,7 +29,7 @@ public class Account {
     private String accountid;
 
     @NotNull
-    @Size(min = 8, max = 255, message = "Username have to be grater than 8 characters")
+//    @Size(min = 8, max = 255, message = "Username have to be grater than 8 characters")
     @Column(unique = true)
     private String username;
 
@@ -33,7 +37,7 @@ public class Account {
     private String email;
 
     @NotNull
-    @Size(min = 8, max = 255, message = "Password have to be grater than 8 characters")
+//    @Size(min = 8, max = 255, message = "Password have to be grater than 8 characters")
     private String password;
 
     @NotNull
@@ -47,7 +51,7 @@ public class Account {
 
     @NotNull
     private boolean locked = false;
-//
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "AccountRole", joinColumns = @JoinColumn(name = "accountid", referencedColumnName = "accountid"),
 //            inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "roleid"))
